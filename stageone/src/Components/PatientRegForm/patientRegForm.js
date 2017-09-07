@@ -18,6 +18,5 @@ class PatientRegForm extends Component {
         title: 'Patient Registration Form',
     }
 
-
-
 }
+export default PatientRegForm;
