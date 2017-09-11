@@ -13,20 +13,21 @@ import {
     Tabs,
     Tab, TabHeading,
 } from 'native-base';
-//import PatientList from '../PatientsList/patientsList'
-import PatientRegForm from '../PatientRegForm/patientregform';
+import PatientList from '../PatientList/patientList'
 import HomePage from '../HomePage/homePage';
+import PatientRegForm from '../PatientRegForm/patientRegForm';
 
 class TabNav extends Component {
     constructor(props) {
         super(props)
-
+        this.state = { email: '', pass: '' }
     }
     static navigationOptions = {
         title: 'Patient App',
         Header: null
     }
     render() {
+        console.disableYellowBox = true;
         return (
             <Container>
                 <Content>
@@ -48,3 +49,21 @@ class TabNav extends Component {
 }
 
 export default TabNav;
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bgImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: null,
+        height: null,
+        resizeMode: 'stretch',
+
+    }
+})

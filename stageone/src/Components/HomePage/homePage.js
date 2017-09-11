@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-import { View, Text, Button } from "react-native"
+import { View, Text, Button, DrawerLayoutAndroid, Image, StyleSheet } from "react-native";
+import { Container, Header, Content, List, ListItem, Icon, Left, Body, Right, Switch } from "native-base";
+import PatientRegForm from '../PatientRegForm/patientRegForm';
 
 
 
@@ -14,49 +15,91 @@ class HomePage extends Component {
     }
 
     static navigationOptions = {
-        title: 'Login Page',
+        title: 'Home',
+        Header: null
     }
 
 
-    loginCheck = () => {
+    // loginCheck = () => {
 
-        console.log("dadadadad");
+    //     console.log("dadadadad");
 
-        const email = this.state.email;
-        const pass = this.state.pass;
+    //     const email = this.state.email;
+    //     const pass = this.state.pass;
 
-        var abc = {}
-        var obj = {
-            email: email,
-            pass: pass,
-        }
-        abc['users'] = obj;
+    //     var abc = {}
+    //     var obj = {
+    //         email: email,
+    //         pass: pass,
+    //     }
+    //     abc['users'] = obj;
 
-        console.log(abc);
-    }
+    //     console.log(abc);
+    // }
 
     render() {
         return (
 
-            <Container>
-                <Content>
-                    <Form>
-                        <Item floatingLabel>
-                            <Label>Username</Label>
-                            <Input onChangeText={(email) => this.setState({ email })} />
-                        </Item>
-                        <Item floatingLabel last>
-                            <Label>Password</Label>
-                            <Input onChangeText={(pass) => this.setState({ pass })} />
-                        </Item>
-                    </Form>
-                    <Button title="Patient Route" onPress={() => { this.props.navigation.navigate('patientRoute') }}></Button>
-                    <Button title="Create an account" onPress={() => { this.props.navigation.navigate('route') }}></Button>
-                </Content>
-
-            </Container>
+            <View>
+                <List>
+                    <ListItem icon>
+                        <Left>
+                            <Icon name="plane" />
+                        </Left>
+                        <Body>
+                            <Text>Airplane Mode</Text>
+                        </Body>
+                        <Right>
+                            <Switch value={false} />
+                        </Right>
+                    </ListItem>
+                    <ListItem icon>
+                        <Left>
+                            <Icon name="wifi" />
+                        </Left>
+                        <Body>
+                            <Text>Wi-Fi</Text>
+                        </Body>
+                        <Right>
+                            <Text>GeekyAnts</Text>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                    <ListItem icon>
+                        <Left>
+                            <Icon name="bluetooth" />
+                        </Left>
+                        <Body>
+                            <Text>Bluetooth</Text>
+                        </Body>
+                        <Right>
+                            <Text>On</Text>
+                            <Icon name="arrow-forward" />
+                        </Right>
+                    </ListItem>
+                </List>
+            </View>
 
         )
     }
 }
 export default HomePage;
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bgImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: null,
+        height: null,
+        resizeMode: 'stretch',
+
+    }
+})
