@@ -15,7 +15,6 @@ import {
 
 import { View, Text, Button, TextInput, AsyncStorage, Image, StyleSheet } from "react-native"
 import DatePicker from 'react-native-datepicker'
-// import Signup from '../Signup/Signup'
 
 class PatientList extends Component {
     constructor(props) {
@@ -32,18 +31,18 @@ class PatientList extends Component {
     componentWillMount() {
         console.disableYellowBox = true;
 
-        AsyncStorage.getItem('abc123', (err, result) => {
+        AsyncStorage.getItem('abc', (err, result) => {
             if (result !== null) {
                 let data = JSON.parse(result);
                 this.setState({ patients: data });
-                console.log(this.state.patients);
+                console.log(this.state.patients, 'aasdsdasd');
             }
         });
         this.setState({ date: '' })
         console.log(this.state.date)
     }
     componentWillReceiveProps() {
-        AsyncStorage.getItem('abc123', (err, result) => {
+        AsyncStorage.getItem('abc', (err, result) => {
             if (result !== null) {
                 let data = JSON.parse(result);
                 this.setState({ patients: data });
@@ -57,7 +56,7 @@ class PatientList extends Component {
 
         let patientsbyName = this.state.patients.filter((patient) => {
             return (
-                patient.pname.toLocaleLowerCase().indexOf(this.state.search.toLocaleLowerCase()) !== -1
+                patient.patientname.toLocaleLowerCase().indexOf(this.state.search.toLocaleLowerCase()) !== -1
             )
         });
 
@@ -67,7 +66,7 @@ class PatientList extends Component {
             )
         });
         return (
-            <View>
+            <View >
                 <Tabs>
                     <Tab heading={<TabHeading><Icon name="ios-search-outline" /><Text style={{ color: '#fff' }}> Search by Name</Text></TabHeading>} >
                         <Header searchBar rounded>
@@ -84,12 +83,12 @@ class PatientList extends Component {
                                         <Left>
                                             <Image
                                                 style={{ width: 50, height: 50 }}
-                                                source={{ uri: 'https://www.arthrosurface.com/wp-content/uploads/2013/05/SurgeonPatient.png' }}
+                                                source={{ uri: 'https://cdn.pixabay.com/photo/2016/03/31/20/12/doctor-1295581_960_720.png' }}
                                             />
                                         </Left>
                                         <Body>
-                                            <Text>{pat.pname}</Text>
-                                            <Text note>Diseases: {pat.dis}</Text>
+                                            <Text>{pat.patientname}</Text>
+                                            <Text note>Diseases: {pat.disease}</Text>
                                         </Body>
                                         <Right>
                                             <Text note>{pat.date}</Text>
@@ -135,12 +134,12 @@ class PatientList extends Component {
                                         <Left>
                                             <Image
                                                 style={{ width: 50, height: 50 }}
-                                                source={{ uri: 'https://www.arthrosurface.com/wp-content/uploads/2013/05/SurgeonPatient.png' }}
+                                                source={{ uri: 'https://cdn.pixabay.com/photo/2016/03/31/20/12/doctor-1295581_960_720.png' }}
                                             />
                                         </Left>
                                         <Body>
-                                            <Text>{pat.pname}</Text>
-                                            <Text note>Diseases: {pat.dis}</Text>
+                                            <Text>{pat.patientname}</Text>
+                                            <Text note>Diseases: {pat.disease}</Text>
                                         </Body>
                                         <Right>
                                             <Text note>{pat.date}</Text>

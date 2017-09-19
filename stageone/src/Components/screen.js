@@ -5,14 +5,14 @@ import { View, Text, Button } from "react-native"
 class Screen extends Component {
 
     static navigationOptions = {
-        title: "SignUp"
+        title: "Let's Start"
     }
 
     render() {
         return (
 
             <View>
-                <Button title="signup" onPress={() => { this.props.navigation.navigate('route') }}></Button>
+                <Button title="let's start" onPress={() => { this.props.navigation.navigate('route') }}></Button>
             </View>
         )
     }

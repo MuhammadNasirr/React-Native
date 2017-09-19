@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Input, Label, Card, CardItem, Body, Button, Toast } from 'native-base';
 import { View, Text, AsyncStorage, StyleSheet, Image } from "react-native";
-import Hr from 'react-native-hr';
 import DatePicker from 'react-native-datepicker'
-
-
+import Hr from 'react-native-hr';
 
 
 class PatientRegForm extends Component {
@@ -19,31 +17,28 @@ class PatientRegForm extends Component {
             cost: '',
             date: todayDate,
             patient: [],
+            showToast: false
         }
     }
     static navigationOptions = {
-        title: 'Patient Registration Form',
         Header: null,
     }
     componentWillMount() {
         console.desableYellowBox = true,
-            AsyncStorage.getItem('nasir', (err, result) => {
+            AsyncStorage.getItem('abc', (err, result) => {
                 if (result !== null) {
                     let data = JSON.parse(result);
-                    this.setState({ patient: data })
-                    console.log(this.state.patient, 'asdasdasd');
+                    this.setState({ patien: data })
+                    console.log(this.state.patient, 'hello');
                 }
             })
     }
     addPatient = () => {
         var patients = this.state.patient;
-        if (this.state.patientname === '' || this.state.desease === '' || this.state.medication === '' || this.state.cost === '') {
+        if (this.state.patientname == '' || this.state.desease == '' || this.state.medication == '' || this.state.cost == '') {
             console.log(this.props, "props")
-            Toast.show({
-                text: 'Please fill form!',
-                position: 'bottom',
-                buttonText: 'Okay',
-            });
+            alert("Please fill form!")
+      
         }
         else {
             var obj = {
@@ -53,15 +48,11 @@ class PatientRegForm extends Component {
                 cost: this.state.cost,
                 date: this.state.date,
             }
-            console.log(obj);
             patients.push(obj)
             console.log(patients);
-            AsyncStorage.setItem('nasir', JSON.stringify(patients));
-            Toast.show({
-                text: 'Patient has been added!',
-                position: 'bottom',
-                buttonText: 'Okay'
-            })
+            AsyncStorage.setItem('abc', JSON.stringify(patients));
+            alert("Patient has been added!")
+          
             this.setState({
                 patientname: '',
                 desease: '',
@@ -73,13 +64,13 @@ class PatientRegForm extends Component {
     }
     render() {
         return (
-            <View>
-                <Card style={{ width: 300, marginTop: '10%',marginLeft: '12%' }}>
+            <View >
+                <Card style={{ width: 300, marginTop: '10%', marginLeft: '12%' }}>
                     <CardItem>
                         <Body>
-                            <Hr lineColor='#b3b3b3' text='Registration Form' textColor='steelblue'
+                            <Hr textColor='#306C56' lineColor='#306C56' text='Registration Form'
                                 textStyle={{
-                                    color: "red",
+                                    color: "green",
                                     height: 20,
 
                                 }} />
@@ -117,11 +108,10 @@ class PatientRegForm extends Component {
                                     dateInput: {
                                         marginLeft: 36
                                     }
-                                    // ... You can check the source to find the other keys.
                                 }}
                                 onDateChange={(date) => { this.setState({ date: date }) }}
                             />
-                            <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', marginLeft: '15%', marginTop: 20, width: '70%' }} onPress={this.addPatient}>
+                            <Button block style={{ backgroundColor: 'rgba(48,108,86, 1 )', marginLeft: '15%', marginTop: 20, width: '70%', borderRadius: 6 }} onPress={this.addPatient}>
                                 <Text style={{ color: '#fff', }} >Patient Registration</Text>
                             </Button>
                         </Body>
