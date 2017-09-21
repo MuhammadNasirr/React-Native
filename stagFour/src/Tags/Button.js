@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, onPress } from "react-native";
-import react, { Component } from "react";
+import React, { Component } from "react";
 
 function Button({ children, onPress }) {
     return (

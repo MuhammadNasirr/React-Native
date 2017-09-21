@@ -2,14 +2,16 @@ class Actions{
     static Login = "Login"
     static Signup = "Signup"
 
-    static LoginAction(){
+    static LoginAction(login){
         return {
-            type:Actions.Login
+            type:Actions.Login,
+            login
         }
     }
-    static SignupAction(){
+    static SignupAction(signup){
         return {
-            type:Actions.Signup
+            type:Actions.Signup,
+            signup
         }
     }
 }
