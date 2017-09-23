@@ -2,14 +2,14 @@ import * as firebase from 'firebase';
 import Actions from '../Actions/AuthActions';
 
 class Middleware {
-    static SignupUser(userDetails) {
+    static signupUser(userDetails) {
         return (dispatch) => {
             let auth = firebase.auth();
-            auth.createUserWithEmailAndPassword(userDetails.id, userDetails.pass)
-                .then((user) => {
+            auth.createUserWithEmailAndPassword(userDetails.email, userDetails.pass)
+                .then((users) => {
                     uid = user.uid;
                     userDetails._id = uid;
-                    firebase.database().ref(`Doctors/${uid}`).set(userDetails);
+                    firebase.database().ref(`Users/${uid}`).set(userDetails);
                     dispatch(Actions.SignupAction())
                 })
                 .catch(function (error) {
@@ -18,11 +18,11 @@ class Middleware {
                 });
         }
     }
-    static LoginUser(userDetails) {
+    static loginUser(props, userDetails) {
         return (dispatch) => {
             let auth = firebase.auth();
-            auth.signInWithEmailAndPassword(userDetails.id, userDetails.pass)
-                .then((user) => {
+            auth.signInWithEmailAndPassword(userDetails.email, userDetails.pass)
+                .then((users) => {
                     alert('Successfully Login!')
                     props.navigation.navigate('tabnavigation')
                 })

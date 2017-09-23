@@ -8,20 +8,20 @@ import { Container, Content, Card, CardItem, Input, Footer } from 'native-base';
 import { View, Text, AsyncStorage, Image, StyleSheet, TextInput } from "react-native"
 
 
-function mapStateToProp(state) {
-    return {
-
-        storeState: state
-    }
-}
-
 function mapDispatchToProp(dispatch) {
     return {
-        loginMethod: (props, doctor) => {
-            dispatch(Middleware.LoginUser(props, doctor))
+        loginUser: (props, doctor) => {
+            dispatch(Middleware.loginUser(props, doctor))
         }
     }
 }
+function mapStateToProp(state) {
+    return {
+
+       // storeState: state
+    }
+}
+
 
 
 class Login extends Component {
@@ -29,8 +29,8 @@ class Login extends Component {
         super(props)
         this.state = {
             email: '',
-            password: '',
-            user: []
+            pass: '',
+            users: []
         }
     }
     static navigationOptions = {
@@ -44,7 +44,7 @@ class Login extends Component {
             if (result !== null) {
                 let data = JSON.parse(result)
                 var email = data.email
-                var pass = data.password
+                var pass = data.pass
                 firebase.auth().signInWithEmailAndPassword(email, pass)
                     .then((user) => {
                         this.props.navigation.navigate('tabnavigation')
@@ -54,19 +54,19 @@ class Login extends Component {
     }
 
     LoginUserMethod = () => {
-        if (this.state.email == '' || this.state.password == '') {
+        if (this.state.email == '' || this.state.pass == '') {
             alert('Enter Email and Password !')
         }
         else {
 
             var email = this.state.email;
-            var pass = this.state.password;
+            var pass = this.state.pass;
 
             var doctor = {
                 email: email,
-                pass: password,
+                pass: pass,
             }
-            this.props.loginMethod(this.props, doctor)
+            this.props.loginUser(this.props, doctor)
         }
     }
 
@@ -91,7 +91,7 @@ class Login extends Component {
                         underlineColorAndroid='#fff'
                         secureTextEntry={true}
                     />
-                    <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.loginCheck}>
+                    <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.LoginUserMethod}>
                         <Text style={{ color: '#fff', }} >Login</Text>
                     </Button>
                     <Text style={{ color: '#fff', fontSize: 12, textAlign: 'center', marginTop: 10 }}> Forgot your login details?<Text style={{ fontWeight: 'bold', }}> Get login help.</Text> </Text>
@@ -108,7 +108,7 @@ class Login extends Component {
     }
 }
 
-export default connect(mapDispatchToProp, mapStateToProp)(Login)
+export default connect(mapStateToProp, mapDispatchToProp)(Login)
 
 const styles = StyleSheet.create({
     container: {

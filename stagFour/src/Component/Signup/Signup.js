@@ -8,18 +8,17 @@ import Spinner from '../../Tags/Spinner';
 import { connect } from 'react-redux';
 import Middleware from '../../Store/Middleware/Middleware';
 
+
+function mapDispatchToProp(dispatch) {
+    return {
+        signupUser: (idpass) =>  dispatch(Middleware.signupUser(idpass))
+        
+    }
+}
 function mapStateToProp(state) {
     return {
 
         storeState: state
-    }
-}
-
-function mapDispatchToProp(dispatch) {
-    return {
-        signupMethod: (idpass) => {
-            dispatch(Middleware.SignupUser(idpass))
-        }
     }
 }
 
@@ -50,63 +49,63 @@ class Signup extends Component {
         console.disableYellowBox = true
     }
 
-    SignupUserMethod() {
-        let userDetail = {
+    SignupUserMethod = (e) => {
+        var userDetail = {
             fullname: this.state.fullname,
             surname: this.state.surname,
             email: this.state.email,
             pass: this.state.password,
         }
-        this.props.signupMethod(userDetail)
+        this.props.signupUser(userDetail)
     }
 
     render() {
         return (
             <Image source={require('../../Images/1.jpg')} style={styles.bgImage}>
-            <Container style={styles.container}>
-                <Content style={{ width: 240, marginTop: 100 }} >
-                    <TextInput
-                        style={{ height: 40, color: '#fff' }}
-                        placeholder="Full Name"
-                        placeholderTextColor="white"
-                        onChangeText={(fname) => this.setState({ fname })}
-                        underlineColorAndroid='#fff'
+                <Container style={styles.container}>
+                    <Content style={{ width: 240, marginTop: 100 }} >
+                        <TextInput
+                            style={{ height: 40, color: '#fff' }}
+                            placeholder="Full Name"
+                            placeholderTextColor="white"
+                            onChangeText={(fullname) => this.setState({ fullname })}
+                            underlineColorAndroid='#fff'
 
-                    />
-                    <TextInput
-                        style={{ height: 40, color: '#fff' }}
-                        placeholder="Surname"
-                        placeholderTextColor="white"
-                        onChangeText={(sname) => this.setState({ sname })}
-                        underlineColorAndroid='#fff'
+                        />
+                        <TextInput
+                            style={{ height: 40, color: '#fff' }}
+                            placeholder="Surname"
+                            placeholderTextColor="white"
+                            onChangeText={(surname) => this.setState({ surname })}
+                            underlineColorAndroid='#fff'
 
-                    />
-                    <TextInput
-                        style={{ height: 40, color: '#fff' }}
-                        placeholder="Email Address.."
-                        placeholderTextColor="white"
-                        onChangeText={(email) => this.setState({ email })}
-                        underlineColorAndroid='#fff'
+                        />
+                        <TextInput
+                            style={{ height: 40, color: '#fff' }}
+                            placeholder="Email Address.."
+                            placeholderTextColor="white"
+                            onChangeText={(email) => this.setState({ email })}
+                            underlineColorAndroid='#fff'
 
-                    />
-                    <TextInput
-                        style={{ height: 40, color: '#fff' }}
-                        placeholder="Password"
-                        placeholderTextColor="white"
-                        onChangeText={(password) => this.setState({ password })}
-                        underlineColorAndroid='#fff'
-                        secureTextEntry={true}
-                    />
-                    <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.createAnAccount}>
-                        <Text style={{ color: '#fff', }} >Sign up</Text>
-                    </Button>
-                    {
-                        (this.props.signup) ?
-                            this.props.signup.map((user, i) => {
-                                console.log(user.fname)
-                                return (<View key={i}>
-                                    <Text style={{ color: '#fff' }}>{user.fname}</Text>
-                                    {/* {keys.users.map((p, i) => {
+                        />
+                        <TextInput
+                            style={{ height: 40, color: '#fff' }}
+                            placeholder="Password"
+                            placeholderTextColor="white"
+                            onChangeText={(password) => this.setState({ password })}
+                            underlineColorAndroid='#fff'
+                            secureTextEntry={true}
+                        />
+                        <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.SignupUserMethod}>
+                            <Text style={{ color: '#fff', }} >Sign up</Text>
+                        </Button>
+                        {
+                            (this.props.signup) ?
+                                this.props.signup.map((user, i) => {
+                                    console.log(user.fname)
+                                    return (<View key={i}>
+                                        <Text style={{ color: '#fff' }}>{user.fname}</Text>
+                                        {/* {keys.users.map((p, i) => {
                                     return (
                                         <View key={i + 1}>
                                             <Text >{p.fname}</Text>
@@ -114,26 +113,26 @@ class Signup extends Component {
                                         </View>
                                     )
                                 })} */}
-                                </View>
-                                )
-                            })
-                            : null
-                    }
-                    <Text style={{ color: '#fff', fontSize: 12, textAlign: 'center', marginTop: 10 }}> Forgot your login details?<Text style={{ fontWeight: 'bold', }}> Get login help.</Text> </Text>
-                </Content>
-                <Footer style={{ height: 100 }}>
-                    <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', padding: 10, width: 240 }} onPress={() => { this.props.navigation.navigate('login') }}>
-                        <Text style={{ color: '#fff', }} >Already have account </Text>
-                    </Button>
-                </Footer>
+                                    </View>
+                                    )
+                                })
+                                : null
+                        }
+                        <Text style={{ color: '#fff', fontSize: 12, textAlign: 'center', marginTop: 10 }}> Forgot your login details?<Text style={{ fontWeight: 'bold', }}> Get login help.</Text> </Text>
+                    </Content>
+                    <Footer style={{ height: 100 }}>
+                        <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', padding: 10, width: 240 }} onPress={() => { this.props.navigation.navigate('login') }}>
+                            <Text style={{ color: '#fff', }} >Already have account </Text>
+                        </Button>
+                    </Footer>
 
-            </Container>
+                </Container>
             </Image>
         )
     }
 }
 
-export default connect(mapDispatchToProp, mapStateToProp)(Signup)
+export default connect(mapStateToProp, mapDispatchToProp)(Signup)
 
 const styles = StyleSheet.create({
     container: {
