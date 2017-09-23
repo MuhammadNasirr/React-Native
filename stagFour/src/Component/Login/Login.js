@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Button from '../../Tags/Button';
+// import Button from '../../Tags/Button';
 import Header from '../../Tags/Header';
 // import Input from '../../Tags/Input';
 import { connect } from 'react-redux';
 import Middleware from '../../Store/Middleware/Middleware';
-import { Container, Content, Card, CardItem, Input, Footer } from 'native-base';
-import { View, Text, AsyncStorage, Image, StyleSheet, TextInput } from "react-native"
+import { Container,Button, Content, Card, CardItem, Input, Footer } from 'native-base';
+import { View, Text, AsyncStorage, Image, StyleSheet, TextInput } from "react-native";
 
 
 function mapDispatchToProp(dispatch) {
@@ -18,7 +18,7 @@ function mapDispatchToProp(dispatch) {
 function mapStateToProp(state) {
     return {
 
-       // storeState: state
+        // storeState: state
     }
 }
 
@@ -73,36 +73,46 @@ class Login extends Component {
     render() {
         return (
             <Image source={require('../../Images/1.jpg')} style={styles.bgImage}>
-            <Container style={styles.container}>
-                <Content style={{ width: 240, marginTop: 200 }} >
-                    <TextInput
-                        style={{ height: 40, color: '#000' }}
-                        placeholder="Email Address"
-                        placeholderTextColor="white"
-                        onChangeText={(email) => this.setState({ email })}
-                        underlineColorAndroid='#fff'
-                        required
-                    />
-                    <TextInput
-                        style={{ height: 40, color: '#000' }}
-                        placeholder="Password"
-                        placeholderTextColor="white"
-                        onChangeText={(pass) => this.setState({ pass })}
-                        underlineColorAndroid='#fff'
-                        secureTextEntry={true}
-                    />
-                    <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.LoginUserMethod}>
-                        <Text style={{ color: '#fff', }} >Login</Text>
-                    </Button>
-                    <Text style={{ color: '#fff', fontSize: 12, textAlign: 'center', marginTop: 10 }}> Forgot your login details?<Text style={{ fontWeight: 'bold', }}> Get login help.</Text> </Text>
-                </Content>
-                <Footer style={{ height: 100 }}>
-                    <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', padding: 10, width: 240 }} onPress={() => { this.props.navigation.navigate('signup') }}>
-                        <Text style={{ color: '#fff', }} >Create an account </Text>
-                    </Button>
-                </Footer>
+                <Container style={styles.container}>
+                    <Content style={{ width: 240, marginTop: 150 }} >
+                        <Card style={{ width: 350, height: 300 }}>
+                            <CardItem>
+                                <TextInput
+                                    style={{ width: 200, height: 40, color: '#000' }}
+                                    placeholder="Email Address"
+                                    placeholderTextColor="Blue"
+                                    onChangeText={(email) => this.setState({ email })}
+                                    underlineColorAndroid='blue'
+                                    required
+                                />
+                            </CardItem>
+                            <CardItem>
+                                <TextInput
+                                    style={{ width: 200, height: 40, color: '#000' }}
+                                    placeholder="Password"
+                                    placeholderTextColor="Blue"
+                                    onChangeText={(pass) => this.setState({ pass })}
+                                    underlineColorAndroid='blue'
+                                    secureTextEntry={true}
+                                />
+                                </CardItem>
+                                <CardItem>
+                                <Button bordered  style={{ width:70,height:35, marginLeft:60  }} onPress={this.LoginUserMethod}>
+                                    <Text style={{ marginLeft: 15, color:'blue' }} >Login</Text>
+                                </Button>
+                                </CardItem>
+                                <CardItem>
+                                <Text style={{ color: 'blue', fontSize: 12, textAlign: 'center', marginTop: 10 }}> Forgot your login details?<Text style={{ fontWeight: 'bold', }}> Get login help.</Text> </Text>
+                            </CardItem>
+                        </Card>
+                    </Content>
+                    <Footer style={{backgroundColor:'#fff', height:40, marginBottom:10}}>
+                        <Button bordered style={{ padding: 10, width: 240 }} onPress={() => { this.props.navigation.navigate('signup') }}>
+                            <Text style={{marginLeft: 40, color: 'blue', }} >Create an account </Text>
+                        </Button>
+                    </Footer>
 
-            </Container>
+                </Container>
             </Image>
         )
     }
@@ -124,5 +134,5 @@ const styles = StyleSheet.create({
         height: null,
         resizeMode: 'stretch',
 
-    }
+    },
 })
