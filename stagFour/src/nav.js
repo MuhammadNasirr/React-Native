@@ -2,9 +2,9 @@ import { StackNavigator, TabNavigator } from "react-navigation";
 import Login from "./Component/Login/Login";
 import Signup from "./Component/Signup/Signup";
 // import HomePage from "./Components/HomePage/homePage";
-// import PatientRegForm from "./Components/RegForm/regForm";
+import RegistrationForm from "./Component/Registrationform/RegistrationForm";
 // import PatientList from "./Components/PatientsList/patientsList";
-// import TabNavigation from "./Components/TabsNav/tabNavigation";
+import TabNavigation from "./Component/TabNavigation/TabNavigation";
 // import Profile from './Components/Profile/profile';
 // import TabsNav from './Components/TabsNav/tabsNav';
 
@@ -12,9 +12,9 @@ const Naviagte = StackNavigator({
     login: { screen: Login },
     // profile: {screen: Profile},
     // patientList: { screen: PatientList },   
-    // tabnavigation: { screen: TabNavigation },
+    tabnavigation: { screen: TabNavigation },
     // tabsnav: { screen: TabsNav },
-    // regFrom: { screen: PatientRegForm },
+    registrationFrom: { screen: RegistrationForm },
     // homePage: { screen: HomePage },
     signup: { screen: Signup },
 })

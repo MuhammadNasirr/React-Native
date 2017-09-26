@@ -5,16 +5,21 @@ const initial_state = {
     Login: "false",
     Signup: "false",
     isRegister: "false",
+    Patient: "false"
 }
 
 function AuthReducer(state = initial_state, action) {
     switch (action.type) {
         case Actions.Login:
-            return Object.assign({}, state, {Login: "true", isRegister: "true"})
+            return Object.assign({}, state, { Login: "true", isRegister: "true" })
 
         case Actions.Signup:
-            return Object.assign({}, state, {Login: "true", isRegister: "true"})
-            default:
+            return Object.assign({}, state, { Signup: "true", isRegister: "true" })
+
+        case Actions.AllPatient:
+            return Object.assign({}, state, { Patient: "true" })
+
+        default:
             return state
     }
 }

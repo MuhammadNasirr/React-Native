@@ -1,6 +1,7 @@
 class Actions{
     static Login = "Login"
     static Signup = "Signup"
+    static AllPatient = "Patient"
 
     static LoginAction(login){
         return {
@@ -12,6 +13,12 @@ class Actions{
         return {
             type:Actions.Signup,
             signup
+        }
+    }
+    static PatientAction(patient){
+        return{
+            type:Actions.AllPatient,
+            patient
         }
     }
 }

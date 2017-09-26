@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import Middleware from '../../Store/Middleware/Middleware';
 import { Container,Button, Content, Card, CardItem, Input, Footer } from 'native-base';
 import { View, Text, AsyncStorage, Image, StyleSheet, TextInput } from "react-native";
+import * as firebase from "firebase";
+
 
 
 function mapDispatchToProp(dispatch) {
@@ -53,7 +55,7 @@ class Login extends Component {
         })
     }
 
-    LoginUserMethod = () => {
+    LoginDoctor = () => {
         if (this.state.email == '' || this.state.pass == '') {
             alert('Enter Email and Password !')
         }
@@ -97,7 +99,7 @@ class Login extends Component {
                                 />
                                 </CardItem>
                                 <CardItem>
-                                <Button bordered  style={{ width:70,height:35, marginLeft:60  }} onPress={this.LoginUserMethod}>
+                                <Button bordered  style={{ width:70,height:35, marginLeft:60  }} onPress={this.LoginDoctor}>
                                     <Text style={{ marginLeft: 15, color:'blue' }} >Login</Text>
                                 </Button>
                                 </CardItem>

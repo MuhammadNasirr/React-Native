@@ -49,14 +49,14 @@ class Signup extends Component {
         console.disableYellowBox = true
     }
 
-    SignupUserMethod = (e) => {
+    SignupDoctor = (e) => {
         var userDetail = {
             fullname: this.state.fullname,
             surname: this.state.surname,
             email: this.state.email,
             pass: this.state.password,
         }
-        this.props.signupUser(userDetail)
+        this.props.signupUser(docDetail)
     }
 
     render() {
@@ -96,7 +96,7 @@ class Signup extends Component {
                             underlineColorAndroid='#fff'
                             secureTextEntry={true}
                         />
-                        <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.SignupUserMethod}>
+                        <Button block rounded style={{ marginTop: 20, backgroundColor: 'rgba(255,255,255, 0.3 )', padding: 10, width: 240 }} onPress={this.SignupDoctor}>
                             <Text style={{ color: '#fff', }} >Sign up</Text>
                         </Button>
                         {
@@ -104,7 +104,7 @@ class Signup extends Component {
                                 this.props.signup.map((user, i) => {
                                     console.log(user.fname)
                                     return (<View key={i}>
-                                        <Text style={{ color: '#fff' }}>{user.fname}</Text>
+                                        <Text style={{ color: '#fff' }}>{user.fullname}</Text>
                                         {/* {keys.users.map((p, i) => {
                                     return (
                                         <View key={i + 1}>
