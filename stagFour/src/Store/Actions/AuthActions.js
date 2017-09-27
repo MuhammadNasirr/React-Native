@@ -15,10 +15,10 @@ class Actions{
             signup
         }
     }
-    static PatientAction(patient){
+    static PatientAction(patients){
         return{
             type:Actions.AllPatient,
-            patient
+            patients
         }
     }
 }

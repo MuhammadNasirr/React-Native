@@ -11,16 +11,16 @@ import {
 import Tabs from 'react-native-tabs';
 import DatePicker from 'react-native-datepicker';
 
-function mapDispatchToProp(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
-        allPatient: (docId) => dispatch(Middleware.allPatient(docId))
+        allPatient: (docID) => dispatch(Middleware.allPatient(docID))
 
     }
 }
-function mapStateToProp(state) {
+function mapStateToProps(state) {
     return {
 
-        // storeState: state
+        patients: state.patients.patient
     }
 }
 
@@ -29,7 +29,7 @@ class PatientList extends Component {
         super(props);
         var today = new Date();
         var todayDate = today.toISOString().substring(0, 10);
-        this.state = { email: '', pass: '', patients: [],page: 'second', search: '', date: todayDate, }
+        this.state = { page: 'second', search: '', date: todayDate, }
     }
 
     static navigationOptions = {
@@ -39,7 +39,7 @@ class PatientList extends Component {
     componentWillMount() {
         console.disableYellowBox = true;
 
-        AsyncStorage.getItem('abc', (err, result) => {
+        AsyncStorage.getItem('xyz', (err, result) => {
             if (result !== null) {
                 let data = JSON.parse(result);
                 var abc = data._id;
@@ -61,18 +61,17 @@ class PatientList extends Component {
     //     console.log(this.state.date)
     // }
     render() {
-
-        let patientsbyName = this.state.patients.filter((patient) => {
+        let patientsbyName = this.props.patients.filter((patient) => {
             return (
                 patient.patientname.toLocaleLowerCase().indexOf(this.state.search.toLocaleLowerCase()) !== -1
             )
         });
 
-        let patientsbyDate = this.state.patients.filter((patient) => {
-            return (
-                patient.date.toLocaleLowerCase().indexOf(this.state.date.toLocaleLowerCase()) !== -1
-            )
-        });
+        // let patientsbyDate = this.state.patients.filter((patient) => {
+        //     return (
+        //         patient.date.toLocaleLowerCase().indexOf(this.state.date.toLocaleLowerCase()) !== -1
+        //     )
+        // });
         return (
             <Container>
             <View>
@@ -106,6 +105,29 @@ class PatientList extends Component {
                         })
                     }
                 </List>
+                {/* <List>
+
+                    {
+                        patientsbyDate.map((pat, i) => {
+                            return (<ListItem avatar key={i}>
+                                <Left>
+                                    <Thumbnail
+                                        style={{ width: 50, height: 50 }}
+                                        source={{ uri: 'https://www.arthrosurface.com/wp-content/uploads/2013/05/SurgeonPatient.png' }}
+                                    />
+                                </Left>
+                                <Body>
+                                    <Text>{pat.patientname}</Text>
+                                    <Text note>Diseases: {pat.disease}</Text>
+                                </Body>
+                                <Right>
+                                    <Text note>{pat.date}</Text>
+                                </Right>
+                            </ListItem>
+                            )
+                        })
+                    }
+                </List> */}
 
             </View>
         </Container>
@@ -200,4 +222,4 @@ class PatientList extends Component {
         )
     }
 }
-export default connect(mapStateToProp, mapDispatchToProp)(PatientList)
+export default connect(mapStateToProps, mapDispatchToProps)(PatientList)

@@ -3,7 +3,7 @@ import Login from "./Component/Login/Login";
 import Signup from "./Component/Signup/Signup";
 // import HomePage from "./Components/HomePage/homePage";
 import RegistrationForm from "./Component/Registrationform/RegistrationForm";
-// import PatientList from "./Components/PatientsList/patientsList";
+import PatientList from "./Component/PatientList/PatientList";
 import TabNavigation from "./Component/TabNavigation/TabNavigation";
 // import Profile from './Components/Profile/profile';
 // import TabsNav from './Components/TabsNav/tabsNav';
@@ -11,7 +11,7 @@ import TabNavigation from "./Component/TabNavigation/TabNavigation";
 const Naviagte = StackNavigator({
     login: { screen: Login },
     // profile: {screen: Profile},
-    // patientList: { screen: PatientList },   
+    patientList: { screen: PatientList },   
     tabnavigation: { screen: TabNavigation },
     // tabsnav: { screen: TabsNav },
     registrationFrom: { screen: RegistrationForm },

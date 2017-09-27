@@ -17,7 +17,7 @@ function mapDispatchToProp(dispatch) {
 function mapStateToProp(state) {
     return {
 
-       // storeState: state
+        // storeState: state
     }
 }
 
@@ -31,10 +31,10 @@ class RegistrationForm extends Component {
             desease: '',
             medication: '',
             cost: '',
+            docID: '',
             date: todayDate,
             patient: [],
-            docID: '',
-            showToast: false
+            // showToast: false
         }
     }
     static navigationOptions = {
@@ -42,16 +42,17 @@ class RegistrationForm extends Component {
     }
     componentWillMount() {
         console.desableYellowBox = true,
-            AsyncStorage.getItem('abc', (err, result) => {
+            AsyncStorage.getItem('xyz', (err, result) => {
+                console.log(result)
                 if (result !== null) {
                     let data = JSON.parse(result);
-                    this.setState({ docID: data._id  })
-                    console.log(this.state.patient, 'hello');
+                    this.setState({ docID: data._id })
+                    console.log(data, 'hello');
                 }
             })
     }
     addPatient = () => {
-        var patients = this.state.patient;
+        // var patients = this.state.patient;
         if (this.state.patientname == '' || this.state.desease == '' || this.state.medication == '' || this.state.cost == '') {
             console.log(this.props, "props")
             alert("Please fill form!")
@@ -64,8 +65,10 @@ class RegistrationForm extends Component {
                 medication: this.state.medication,
                 cost: this.state.cost,
                 date: this.state.date,
+                docID: this.state.docID,
             }
             this.props.createPatient(obj);
+            console.log(obj)
             alert("Patient has been added!")
 
             this.setState({
@@ -80,87 +83,86 @@ class RegistrationForm extends Component {
     render() {
         return (
             <Container>
-            <View>
-                <Header searchBar rounded>
-                    <Text style={{ color: '#fff', fontSize: 24, marginTop: 10 }}>
-                        Registration Form
+                <View>
+                    <Header searchBar rounded>
+                        <Text style={{ color: '#fff', fontSize: 24, marginTop: 10 }}>
+                            Registration Form
                     </Text>
-                </Header>
-                {/* <Hr lineColor='#b3b3b3' text='Registration Form' textColor='steelblue'
+                    </Header>
+                    {/* <Hr lineColor='#b3b3b3' text='Registration Form' textColor='steelblue'
                     textStyle={{
                         color: "red",
                         height: 20,
 
                     }} /> */}
 
-                <View style={styles.bgImage}>
+                    <View style={styles.bgImage}>
 
-                    <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label>Patient Name</Label>
-                        <Input required onChangeText={(patientname) => this.setState({ patientname })} value={this.state.patientname} />
-                    </Item>
-                    <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label>Diseases</Label>
-                        <Input onChangeText={(desease) => this.setState({ desease })} value={this.state.desease} />
-                    </Item>
-                    <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label>Medication Provide</Label>
-                        <Input onChangeText={(medication) => this.setState({ medication })} value={this.state.medication} />
-                    </Item>
-                    <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label>Cost</Label>
-                        <Input onChangeText={(cost) => this.setState({ cost })} value={this.state.cost} />
-                    </Item>
-                    <DatePicker
-                        style={{ width: '100%', marginTop: 20 }}
-                        date={this.state.date}
-                        mode="date"
-                        placeholder="select date"
-                        format="YYYY-MM-DD"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                left: 0,
-                                top: 4,
-                                marginLeft: 0
-                            },
-                            dateInput: {
-                                marginLeft: 36
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ date: date }) }}
-                    />
-                    <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', marginLeft: '15%', marginTop: 20, width: '70%' }} onPress={this.addPatient}>
-                        <Text style={{ color: '#fff', }} >Patient Registration</Text>
-                    </Button>
+                        <Item floatingLabel style={{ marginTop: 10 }}>
+                            <Label>Patient Name</Label>
+                            <Input required onChangeText={(patientname) => this.setState({ patientname })} value={this.state.patientname} />
+                        </Item>
+                        <Item floatingLabel style={{ marginTop: 10 }}>
+                            <Label>Diseases</Label>
+                            <Input onChangeText={(desease) => this.setState({ desease })} value={this.state.desease} />
+                        </Item>
+                        <Item floatingLabel style={{ marginTop: 10 }}>
+                            <Label>Medication Provide</Label>
+                            <Input onChangeText={(medication) => this.setState({ medication })} value={this.state.medication} />
+                        </Item>
+                        <Item floatingLabel style={{ marginTop: 10 }}>
+                            <Label>Cost</Label>
+                            <Input onChangeText={(cost) => this.setState({ cost })} value={this.state.cost} />
+                        </Item>
+                        <DatePicker
+                            style={{ width: '100%', marginTop: 20 }}
+                            date={this.state.date}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                },
+                                dateInput: {
+                                    marginLeft: 36
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ date: date }) }}
+                        />
+                        <Button block rounded style={{ backgroundColor: 'rgba(45,92,227, 0.7 )', marginLeft: '15%', marginTop: 20, width: '70%' }} onPress={this.addPatient}>
+                            <Text style={{ color: '#fff', }} >Patient Registration</Text>
+                        </Button>
 
+                    </View>
                 </View>
-            </View>
 
-        </Container>
+            </Container>
 
-        //            </Image>
 
-    )
-}
+        )
+    }
 }
 export default connect(mapStateToProp, mapDispatchToProp)(RegistrationForm)
 
 
 
 const styles = StyleSheet.create({
-container: {
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
-},
-bgImage: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 300,
-    marginLeft: 40,
+    container: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bgImage: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 300,
+        marginLeft: 40,
 
-}
+    }
 })

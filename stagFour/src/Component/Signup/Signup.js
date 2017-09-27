@@ -9,16 +9,16 @@ import { connect } from 'react-redux';
 import Middleware from '../../Store/Middleware/Middleware';
 
 
-function mapDispatchToProp(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
-        signupUser: (idpass) =>  dispatch(Middleware.signupUser(idpass))
+        signupUser: (users) =>  dispatch(Middleware.signupUser(users))
         
     }
 }
-function mapStateToProp(state) {
+function mapStateToProps(state) {
     return {
 
-        storeState: state
+        signup: state.Signup.signup,
     }
 }
 
@@ -50,13 +50,13 @@ class Signup extends Component {
     }
 
     SignupDoctor = (e) => {
-        var userDetail = {
+        var userDetails = {
             fullname: this.state.fullname,
             surname: this.state.surname,
             email: this.state.email,
             pass: this.state.password,
         }
-        this.props.signupUser(docDetail)
+        this.props.signupUser(userDetails)
     }
 
     render() {
@@ -132,7 +132,7 @@ class Signup extends Component {
     }
 }
 
-export default connect(mapStateToProp, mapDispatchToProp)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
 
 const styles = StyleSheet.create({
     container: {

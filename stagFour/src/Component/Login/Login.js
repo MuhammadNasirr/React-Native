@@ -13,8 +13,8 @@ import * as firebase from "firebase";
 function mapDispatchToProp(dispatch) {
     return {
         loginUser: (props, doctor) => {
-            dispatch(Middleware.loginUser(props, doctor))
-        }
+            dispatch(Middleware.loginUser(props, doctor))  
+        },
     }
 }
 function mapStateToProp(state) {

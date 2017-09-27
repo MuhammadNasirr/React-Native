@@ -5,7 +5,7 @@ const initial_state = {
     Login: "false",
     Signup: "false",
     isRegister: "false",
-    Patient: "false"
+    patients: []
 }
 
 function AuthReducer(state = initial_state, action) {
@@ -17,7 +17,8 @@ function AuthReducer(state = initial_state, action) {
             return Object.assign({}, state, { Signup: "true", isRegister: "true" })
 
         case Actions.AllPatient:
-            return Object.assign({}, state, { Patient: "true" })
+        console.log(action.patients)
+            return Object.assign({}, state, { patients: action.patients })
 
         default:
             return state
