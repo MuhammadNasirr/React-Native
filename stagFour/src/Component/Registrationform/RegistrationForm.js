@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 
 
 
-function mapDispatchToProp(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         createPatient: (user) => dispatch(Middleware.createPatient(user))
 
     }
 }
-function mapStateToProp(state) {
+function mapStateToProps(state) {
     return {
 
         // storeState: state
@@ -148,7 +148,7 @@ class RegistrationForm extends Component {
         )
     }
 }
-export default connect(mapStateToProp, mapDispatchToProp)(RegistrationForm)
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)
 
 
 

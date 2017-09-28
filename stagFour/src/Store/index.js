@@ -1,11 +1,21 @@
-import { createStore, applyMiddleware } from "redux"
+import { createStore, applyMiddleware, combineReducers, compose } from "redux"
 import AuthReducer from "../Store/Reducer/AuthReducer"
 import thunk from "redux-thunk"
 
 
 const middleware = applyMiddleware(thunk)
-const store = createStore(AuthReducer, middleware)
 
+const rootReducer = combineReducers({
+    Patients: AuthReducer,
+    
+});
+
+const store = createStore(
+    rootReducer,
+    compose(
+        middleware,
+    )
+);
 store.subscribe(() => {
     console.log("store state", store.getState())
 })

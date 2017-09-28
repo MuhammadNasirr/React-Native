@@ -10,14 +10,14 @@ import * as firebase from "firebase";
 
 
 
-function mapDispatchToProp(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         loginUser: (props, doctor) => {
             dispatch(Middleware.loginUser(props, doctor))  
         },
     }
 }
-function mapStateToProp(state) {
+function mapStateToProps(state) {
     return {
 
         // storeState: state
@@ -120,7 +120,7 @@ class Login extends Component {
     }
 }
 
-export default connect(mapStateToProp, mapDispatchToProp)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 const styles = StyleSheet.create({
     container: {

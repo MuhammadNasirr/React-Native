@@ -16,6 +16,7 @@ class Actions{
         }
     }
     static PatientAction(patients){
+        console.log(patients)
         return{
             type:Actions.AllPatient,
             patients
